@@ -62,9 +62,6 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  if(m_Container.m_CoPilotController.GetAButtonPressed()){
-    m_Container.ResetGyro();
-  }
 }
 
 /**

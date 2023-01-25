@@ -26,7 +26,7 @@ namespace DriveConstant
     extern const frc::DifferentialDriveKinematics kDriveKinematics;
     constexpr auto kTrackwidth = 0.590_m;
     constexpr double kPDriveVelocity = 2;
-    constexpr auto kMaxSpeed = 1.5_mps;
+    constexpr auto kMaxSpeed = 0.5_mps;
     constexpr auto kMaxAcceleration = 1_mps_sq;
     
     constexpr auto kRamseteB = 2.0 * 1_rad * 1_rad / (1_m * 1_m);

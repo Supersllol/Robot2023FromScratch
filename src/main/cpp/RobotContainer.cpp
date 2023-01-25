@@ -6,7 +6,6 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
   // Configure the button bindings
   ConfigureBindings();
   m_Base.SetDefaultCommand(ManualDrive(&m_Base,
