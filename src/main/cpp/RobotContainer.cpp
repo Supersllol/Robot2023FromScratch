@@ -40,8 +40,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
     // Start at the origin facing the +X direction
     frc::Pose2d{0_m, 0_m, 0_deg},
-    // Pass through these two interior waypoints, making an 's' curve path
-    {frc::Translation2d{1_m, 0_m}, frc::Translation2d{2_m, 0_m}},
+    // No intermediate waypoints
+    {},
     // End 3 meters straight ahead of where we started, facing forward
     frc::Pose2d{3_m, 0_m, 0_deg},
     // Pass the config
@@ -65,4 +65,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     return new frc2::SequentialCommandGroup(
     std::move(ramseteCommand),
     frc2::InstantCommand([this] { m_Base.TankDriveVolts(0_V, 0_V); }, {}));
+}
+
+double RobotContainer::GetAngle(){
+  return m_Base.GetAngle();
+}
+
+void RobotContainer::ResetGyro(){
+  m_Base.ResetGyro();
+}
+
+void RobotContainer::SetRightMotorsAutonomous(){
+  m_Base.SetRightMotorsAutonomous();
+}
+
+void RobotContainer::SetRightMotorsTeleop(){
+  m_Base.SetRightMotorsTeleop();
 }

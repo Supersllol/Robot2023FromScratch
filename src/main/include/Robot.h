@@ -10,6 +10,8 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/CommandScheduler.h>
 #include "RobotContainer.h"
+#include "subsystems/Base.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -29,6 +31,5 @@ class Robot : public frc::TimedRobot {
   // Have it empty by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
   frc2::Command* m_autonomousCommand;
-
-  RobotContainer m_container;
+  RobotContainer m_Container;
 };

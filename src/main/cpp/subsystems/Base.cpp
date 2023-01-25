@@ -9,7 +9,6 @@ Base::Base() {
   // Implementation of subsystem constructor goes here.
     m_leftMotorLead.RestoreFactoryDefaults();
     m_leftMotorLead.SetInverted(false);
-    
     m_LeftEncoder.SetPositionConversionFactor(DriveConstant::kWheelCirconfM / DriveConstant::kGearBoxRatio);
     m_LeftEncoder.SetVelocityConversionFactor(DriveConstant::kWheelCirconfM / DriveConstant::kGearBoxRatio / 60); // meter/s
     
@@ -34,7 +33,7 @@ Base::Base() {
     m_RobotDrive.reset(new frc::DifferentialDrive(m_leftMotorLead, m_rightMotorLead));
     m_pOdometry.reset(new frc::DifferentialDriveOdometry(units::degree_t{m_Gyro.GetYaw()}, units::meter_t(m_LeftEncoder.GetPosition()),
     units::meter_t(m_RightEncoder.GetPosition())));
-    
+    m_Gyro.Calibrate();
 }
 
 void Base::Periodic() {
@@ -58,9 +57,12 @@ frc::DifferentialDriveWheelSpeeds Base::GetWheelSpeeds() {
 }
 
 units::degree_t Base::GetHeading() {
-  return units::degree_t{m_Gyro.GetYaw()};
+  return units::degree_t{m_Gyro.GetAngle()};
 }
 
+double Base::GetAngle(){
+  return m_Gyro.GetAngle();
+}
 frc::Pose2d Base::GetPose(){
   return m_pOdometry->GetPose();
 }
@@ -73,11 +75,20 @@ void Base::TankDriveVolts(units::volt_t left, units::volt_t right) {
 
 void Base::ResetOdometry(frc::Pose2d pose) {
   ResetEncoders();
-  m_pOdometry->ResetPosition(m_Gyro.GetRotation2d(),
-                           units::meter_t{m_LeftEncoder.GetVelocity()},
-                           units::meter_t{m_RightEncoder.GetVelocity()}, pose);
+  m_pOdometry->ResetPosition(m_Gyro.GetRotation2d(), units::meter_t{m_LeftEncoder.GetVelocity()}, units::meter_t{m_RightEncoder.GetVelocity()}, pose);
 }
 
 void Base::ResetGyro(){
   m_Gyro.Reset();
+}
+
+void Base::SetRightMotorsAutonomous(){
+  m_rightMotorFollow.SetInverted(true);
+  m_rightMotorLead.SetInverted(true);
+}
+
+void Base::SetRightMotorsTeleop(){
+  m_rightMotorFollow.SetInverted(false);
+  m_rightMotorLead.SetInverted(false);
+  
 }

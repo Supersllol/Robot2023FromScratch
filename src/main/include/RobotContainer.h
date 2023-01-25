@@ -18,6 +18,7 @@
 #include "commands/ManualDrive.h"
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/InstantCommand.h>
+#include <frc2/command/button/JoystickButton.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -29,13 +30,18 @@
 class RobotContainer {
 public:
   RobotContainer();
-
-  frc2::Command* GetAutonomousCommand();
- private:
-  // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandJoystick m_ThrottleStick{OIConstant::ThrottleStickID};
   frc2::CommandJoystick m_TurnStick{OIConstant::TurnStickID};
   frc2::CommandXboxController m_CoPilotController{OIConstant::CoPilotControllerID};
+
+  frc2::Command* GetAutonomousCommand();
+  double GetAngle();
+  void ResetGyro();
+  void SetRightMotorsTeleop();
+  void SetRightMotorsAutonomous();
+ private:
+  // Replace with CommandPS4Controller or CommandJoystick if needed
+  
   
   // The robot's subsystems are defined here...
   Base m_Base;

@@ -38,10 +38,13 @@ class Base : public frc2::SubsystemBase {
   void ResetEncoders();
   frc::DifferentialDriveWheelSpeeds GetWheelSpeeds();
   units::degree_t GetHeading();
+  double GetAngle();
   frc::Pose2d GetPose();
   void TankDriveVolts(units::volt_t, units::volt_t);
   void ResetOdometry(frc::Pose2d);
   void ResetGyro();
+  void SetRightMotorsAutonomous();
+  void SetRightMotorsTeleop();
 private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

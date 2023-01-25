@@ -4,7 +4,10 @@
 
 #include "Robot.h"
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  frc::SmartDashboard::PutNumber("YawGyro", 0);
+  frc::SmartDashboard::PutNumber("EncoderDistance", 0);
+}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -14,8 +17,12 @@ void Robot::RobotInit() {}
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
+
+
 void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
+
+  frc::SmartDashboard::PutNumber("YawGyro", m_Container.GetAngle());
 }
 
 /**
@@ -32,9 +39,10 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
-
-    m_autonomousCommand->Schedule();
+  m_autonomousCommand = m_Container.GetAutonomousCommand();
+  m_Container.ResetGyro();
+  m_Container.SetRightMotorsAutonomous();
+  m_autonomousCommand->Schedule();
 }
 
 void Robot::AutonomousPeriodic() {}
@@ -47,12 +55,17 @@ void Robot::TeleopInit() {
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
+  m_Container.SetRightMotorsTeleop();
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  if(m_Container.m_CoPilotController.GetAButtonPressed()){
+    m_Container.ResetGyro();
+  }
+}
 
 /**
  * This function is called periodically during test mode.

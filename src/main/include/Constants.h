@@ -17,8 +17,8 @@ namespace DriveConstant
     constexpr int DriveGaucheMaitreID = 10;
     constexpr int DriveGaucheEsclaveID = 13;
     constexpr double kWheelDiameterM = 0.149352;
-    constexpr auto kWheelCirconfM        = (kWheelDiameterM * M_PI);
-    constexpr bool kGyroReversed            = false;
+    constexpr auto kWheelCirconfM = (kWheelDiameterM * M_PI);
+    constexpr bool kGyroReversed = false;
     
     constexpr auto ks = 0.168_V;
     constexpr auto kv = 2.86 * 1_V * 1_s / 1_m;
@@ -26,7 +26,7 @@ namespace DriveConstant
     extern const frc::DifferentialDriveKinematics kDriveKinematics;
     constexpr auto kTrackwidth = 0.590_m;
     constexpr double kPDriveVelocity = 2;
-    constexpr auto kMaxSpeed = 3_mps;
+    constexpr auto kMaxSpeed = 1.5_mps;
     constexpr auto kMaxAcceleration = 1_mps_sq;
     
     constexpr auto kRamseteB = 2.0 * 1_rad * 1_rad / (1_m * 1_m);
