@@ -45,6 +45,8 @@ class Base : public frc2::SubsystemBase {
   void ResetGyro();
   void SetRightMotorsAutonomous();
   void SetRightMotorsTeleop();
+  rev::SparkMaxRelativeEncoder GetRightEncoder();
+  rev::SparkMaxRelativeEncoder GetLeftEncoder();
 private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

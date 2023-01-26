@@ -6,7 +6,8 @@
 
 void Robot::RobotInit() {
   frc::SmartDashboard::PutNumber("YawGyro", 0);
-  frc::SmartDashboard::PutNumber("EncoderDistance", 0);
+  frc::SmartDashboard::PutNumber("RightEncoderDistance", 0);
+  frc::SmartDashboard::PutNumber("LeftEncoderDistance", 0);
 }
 
 /**
@@ -62,6 +63,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
+  
 }
 
 /**
