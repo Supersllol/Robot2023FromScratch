@@ -92,3 +92,11 @@ void Base::SetRightMotorsTeleop(){
   m_rightMotorLead.SetInverted(false);
   
 }
+
+rev::SparkMaxRelativeEncoder Base::GetLeftEncoder(){
+  return m_LeftEncoder;
+}
+
+rev::SparkMaxRelativeEncoder Base::GetRightEncoder(){
+  return m_RightEncoder;
+}

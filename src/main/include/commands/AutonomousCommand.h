@@ -1,7 +1,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-
 #include "subsystems/Base.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
